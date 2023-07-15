@@ -46,65 +46,63 @@ export default function Component() {
       .finally(() => loadingSet(false));
   }, [id]);
 
-  return (
-    <div className="container">
-      {loading ? (
-        <LoadingSpinnerBorder />
-      ) : error ? (
-        <h1>Falha ao recupara dados do servidor</h1>
-      ) : (
-        data && (
-          <form className="d-flex flex-column gap-4">
-            <div className="row d-flex gap-4 h5">
-              <div className="col align-items-center d-flex gap-2 justify-content-between">
-                <label>Pediodo inicio:</label>
-                <DatePicker
-                  selected={dataInicio}
-                  name="dataInicio"
-                  className="input-group-text"
-                  onChange={(date) => dataInicioSet(date as Date)}
-                />
-              </div>
-
-              <div className="col align-items-center d-flex gap-2 justify-content-between">
-                Pediodo fim:
-                <DatePicker
-                  className="input-group-text"
-                  name="dataFim"
-                  selected={dataFim}
-                  onChange={(date) => dataFimSet(date as Date)}
-                />
-              </div>
-
-              <div className="col align-items-center d-flex gap-2 justify-content-between">
-                Nome do operador:
-                <input
-                  type="text"
-                  value={nomeOperadorTransacao}
-                  onChange={({ target: { value } }) => nomeOperadorSet(value)}
-                  className="input-group-text"
-                  name="nomeOperadorTransacao"
-                />
-              </div>
+  return loading ? (
+    <LoadingSpinnerBorder />
+  ) : error ? (
+    <h1>Falha ao recupara dados do servidor</h1>
+  ) : (
+    data && (
+      <div className="container">
+        <form className="d-flex flex-column gap-4">
+          <div className="row d-flex gap-4 h5">
+            <div className="col align-items-center d-flex gap-2 justify-content-between">
+              <label>Pediodo inicio:</label>
+              <DatePicker
+                selected={dataInicio}
+                name="dataInicio"
+                className="input-group-text"
+                onChange={(date) => dataInicioSet(date as Date)}
+              />
             </div>
 
-            <div className="d-flex justify-content-end">
-              <button type="submit" className="btn d-inline btn-primary">
-                Buscar
-              </button>
+            <div className="col align-items-center d-flex gap-2 justify-content-between">
+              Pediodo fim:
+              <DatePicker
+                className="input-group-text"
+                name="dataFim"
+                selected={dataFim}
+                onChange={(date) => dataFimSet(date as Date)}
+              />
             </div>
 
-            <div className="d-flex gap-5 h5">
-              <div>Saldo total: R${data.saldoTotal}</div>
-              {data.saldoTotalDoPeriodo && (
-                <div>Saldo do periodo: R${data.saldoTotalDoPeriodo}</div>
-              )}
+            <div className="col align-items-center d-flex gap-2 justify-content-between">
+              Nome do operador:
+              <input
+                type="text"
+                value={nomeOperadorTransacao}
+                onChange={({ target: { value } }) => nomeOperadorSet(value)}
+                className="input-group-text"
+                name="nomeOperadorTransacao"
+              />
             </div>
+          </div>
 
-            <Tabelas data={data.transferencias} />
-          </form>
-        )
-      )}
-    </div>
+          <div className="d-flex justify-content-end">
+            <button type="submit" className="btn d-inline btn-primary">
+              Buscar
+            </button>
+          </div>
+
+          <div className="d-flex gap-5 h5">
+            <div>Saldo total: R${data.saldoTotal}</div>
+            {data.saldoTotalDoPeriodo && (
+              <div>Saldo do periodo: R${data.saldoTotalDoPeriodo}</div>
+            )}
+          </div>
+
+          <Tabelas data={data.transferencias} />
+        </form>
+      </div>
+    )
   );
 }
