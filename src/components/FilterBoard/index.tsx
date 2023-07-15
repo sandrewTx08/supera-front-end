@@ -58,7 +58,11 @@ export default function Component() {
         <form className="d-flex flex-column gap-4">
           <div className="row d-flex gap-4 h5">
             <div className="col align-items-center d-flex gap-2 justify-content-between">
-              <label>Pediodo inicio:</label>
+              <div className="d-flex gap-2 align-items-center">
+                <i className="bi bi-calendar3"></i>
+                Pediodo inicio:
+              </div>
+
               <DatePicker
                 selected={dataInicio}
                 name="dataInicio"
@@ -68,7 +72,11 @@ export default function Component() {
             </div>
 
             <div className="col align-items-center d-flex gap-2 justify-content-between">
-              Pediodo fim:
+              <div className="d-flex gap-2 align-items-center">
+                <i className="bi bi-calendar3"></i>
+                Pediodo fim:
+              </div>
+
               <DatePicker
                 className="input-group-text"
                 name="dataFim"
@@ -78,7 +86,11 @@ export default function Component() {
             </div>
 
             <div className="col align-items-center d-flex gap-2 justify-content-between">
-              Nome do operador:
+              <div className="d-flex gap-2 align-items-center">
+                <i className="bi bi-person-fill"></i>
+                Nome do operador:
+              </div>
+
               <input
                 type="text"
                 value={nomeOperadorTransacao}

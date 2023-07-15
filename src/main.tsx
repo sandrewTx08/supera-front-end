@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
 import "./index.css";
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <Navbar />
-    <main className="mt-4">
+    <main className="mt-4 vh-100">
       <RouterProvider router={router} />
     </main>
     <Footer />
