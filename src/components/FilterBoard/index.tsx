@@ -102,7 +102,9 @@ export default function Component() {
             )}
           </div>
 
-          <Tabelas data={data.transferencias} />
+          <div className="table-responsive">
+            <Tabelas data={data.transferencias} />
+          </div>
         </form>
       </div>
     )
