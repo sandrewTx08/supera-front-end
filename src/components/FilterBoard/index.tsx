@@ -95,10 +95,15 @@ export default function Component() {
             </button>
           </div>
 
-          <div className="d-flex gap-5 h5">
-            <div>Saldo total: R${data.saldoTotal}</div>
+          <div className="row d-flex gap-3 h5">
+            <div className="col">
+              Saldo total: <b>R${data.saldoTotal}</b>
+            </div>
+
             {data.saldoTotalDoPeriodo && (
-              <div>Saldo do periodo: R${data.saldoTotalDoPeriodo}</div>
+              <div className="col">
+                Saldo do periodo: <b>R${data.saldoTotalDoPeriodo}</b>
+              </div>
             )}
           </div>
 
