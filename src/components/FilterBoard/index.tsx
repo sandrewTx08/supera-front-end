@@ -49,7 +49,9 @@ export default function Component() {
   return loading ? (
     <LoadingSpinnerBorder />
   ) : error ? (
-    <h1>Falha ao recupara dados do servidor</h1>
+    <div className="display-5 container">
+      Falha ao recuperar dados do servidor
+    </div>
   ) : (
     data && (
       <div className="container">
