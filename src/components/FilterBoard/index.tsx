@@ -54,7 +54,7 @@ export default function Component() {
         <h1>Falha ao recupara dados do servidor</h1>
       ) : (
         data && (
-          <form className="d-flex flex-column gap-5">
+          <form className="d-flex flex-column gap-4">
             <div className="row d-flex gap-4 h5">
               <div className="col align-items-center d-flex gap-2 justify-content-between">
                 <label>Pediodo inicio:</label>
@@ -88,9 +88,11 @@ export default function Component() {
               </div>
             </div>
 
-            <button type="submit" className="btn d-inline btn-primary">
-              Buscar
-            </button>
+            <div className="d-flex justify-content-end">
+              <button type="submit" className="btn d-inline btn-primary">
+                Buscar
+              </button>
+            </div>
 
             <div className="d-flex gap-5 h5">
               <div>Saldo total: R${data.saldoTotal}</div>
