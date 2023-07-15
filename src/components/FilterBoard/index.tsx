@@ -74,6 +74,15 @@ export default function Component() {
                   />
                 </div>
               </div>
+
+              <div className="col">
+                <label>Nome do operador</label>
+                <input
+                  type="text"
+                  className="input-group-text"
+                  name="nomeOperadorTransacao"
+                />
+              </div>
             </div>
 
             <button type="submit" className="btn d-inline btn-primary">
