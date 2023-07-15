@@ -6,6 +6,7 @@ import { Data } from "../../fetch";
 import Tabelas from "./Tabelas";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import Pagination from "./Pagination";
 
 function formatDate(date: string | null) {
   if (date) {
@@ -16,9 +17,12 @@ function formatDate(date: string | null) {
 export default function Component() {
   const urlParams = new URLSearchParams(window.location.search);
   const { id } = useParams<"id">();
+
   const [data, dataSet] = useState<Data>();
   const [loading, loadingSet] = useState<boolean>(false);
   const [error, errorSet] = useState<Error>();
+
+  const [page, pageSet] = useState<number>(0);
 
   const [nomeOperadorTransacao, nomeOperadorSet] = useState<string>(
     urlParams.get("nomeOperadorTransacao") as string
@@ -36,6 +40,8 @@ export default function Component() {
 
     axios<Data>(`transferencia/${id as string}`, {
       params: {
+        page: page - 1,
+        size: 1,
         nomeOperadorTransacao,
         dataInicio: formatDate(urlParams.get("dataInicio")),
         dataFim: formatDate(urlParams.get("dataFim")),
@@ -44,7 +50,7 @@ export default function Component() {
       .then(({ data }) => dataSet(data))
       .catch((error) => errorSet(error as Error))
       .finally(() => loadingSet(false));
-  }, [id]);
+  }, [id, page]);
 
   return loading ? (
     <LoadingSpinnerBorder />
@@ -121,6 +127,14 @@ export default function Component() {
 
           <div className="table-responsive">
             <Tabelas data={data.transferencias} />
+          </div>
+
+          <div className="d-flex justify-content-center">
+            <Pagination
+              active={page}
+              totalPages={data.totalDePaginas}
+              onClick={(index) => pageSet(index)}
+            />
           </div>
         </form>
       </div>
