@@ -15,7 +15,7 @@ export default function Component({
       </thead>
       <tbody>
         {data.map((t) => (
-          <tr>
+          <tr key={t.id}>
             <th scope="row">{t.dataTransferencia}</th>
             <td>{t.valor}</td>
             <td>{t.tipo}</td>
