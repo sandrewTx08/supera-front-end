@@ -3,33 +3,44 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 export default function Component() {
   return (
     <Navbar
-      expand="lg"
+      expand="md"
       bg="dark"
       data-bs-theme="dark"
       className="bg-body-tertiary"
     >
       <Container className="gap-4">
-        <Navbar.Brand>
-          <img
-            width="200"
-            height="100%"
-            src="/nova-logo-supera-branca.svg"
-            alt=""
-          />
-        </Navbar.Brand>
+        <Nav.Link href="/">
+          <Navbar.Brand>
+            <img
+              width="200"
+              height="100%"
+              src="/nova-logo-supera-branca.svg"
+              alt="Supara"
+            />
+          </Navbar.Brand>
+        </Nav.Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link>Home</Nav.Link>
+          <Nav className="me-auto gap-3">
+            <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Repositorio" id="basic-nav-dropdown">
-              <NavDropdown.Item href="https://github.com/sandrewTx08/PS-Java-React">
+              <NavDropdown.Item
+                target="_blank"
+                href="https://github.com/sandrewTx08/PS-Java-React"
+              >
                 Repositorio do Backend
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item
+                target="_blank"
+                href="https://github.com/sandrewTx08/supera-front-end"
+              >
                 Repositorio do Frontend
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item
+                target="_blank"
+                href="https://github.com/sandrewTx08/supera-4-desafio"
+              >
                 Repositorio dos quato desafios
               </NavDropdown.Item>
             </NavDropdown>
