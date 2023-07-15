@@ -19,6 +19,11 @@ export default function Component() {
   const [data, dataSet] = useState<Data>();
   const [loading, loadingSet] = useState<boolean>(false);
   const [error, errorSet] = useState<Error>();
+
+  const [nomeOperadorTransacao, nomeOperadorSet] = useState<string>(
+    urlParams.get("nomeOperadorTransacao") as string
+  );
+
   const [dataInicio, dataInicioSet] = useState<Date | null>(
     new Date(urlParams.get("dataInicio") as string)
   );
@@ -31,7 +36,7 @@ export default function Component() {
 
     axios<Data>(`transferencia/${id as string}`, {
       params: {
-        nomeOperadorTransacao: urlParams.get("nomeOperadorTransacao"),
+        nomeOperadorTransacao,
         dataInicio: formatDate(urlParams.get("dataInicio")),
         dataFim: formatDate(urlParams.get("dataFim")),
       },
@@ -50,35 +55,33 @@ export default function Component() {
       ) : (
         data && (
           <form className="d-flex flex-column gap-5">
-            <div className="row h5">
-              <div className="col">
-                <div className="d-flex gap-2">
-                  <label>Pediodo inicio:</label>
-                  <DatePicker
-                    selected={dataInicio}
-                    name="dataInicio"
-                    className="input-group-text w-100"
-                    onChange={(date) => dataInicioSet(date as Date)}
-                  />
-                </div>
+            <div className="row d-flex gap-4 h5">
+              <div className="col align-items-center d-flex gap-2 justify-content-between">
+                <label>Pediodo inicio:</label>
+                <DatePicker
+                  selected={dataInicio}
+                  name="dataInicio"
+                  className="input-group-text"
+                  onChange={(date) => dataInicioSet(date as Date)}
+                />
               </div>
 
-              <div className="col">
-                <div className="d-flex gap-2">
-                  Pediodo fim:
-                  <DatePicker
-                    className="input-group-text w-100"
-                    name="dataFim"
-                    selected={dataFim}
-                    onChange={(date) => dataFimSet(date as Date)}
-                  />
-                </div>
+              <div className="col align-items-center d-flex gap-2 justify-content-between">
+                Pediodo fim:
+                <DatePicker
+                  className="input-group-text"
+                  name="dataFim"
+                  selected={dataFim}
+                  onChange={(date) => dataFimSet(date as Date)}
+                />
               </div>
 
-              <div className="col">
-                <label>Nome do operador</label>
+              <div className="col align-items-center d-flex gap-2 justify-content-between">
+                Nome do operador:
                 <input
                   type="text"
+                  value={nomeOperadorTransacao}
+                  onChange={({ target: { value } }) => nomeOperadorSet(value)}
                   className="input-group-text"
                   name="nomeOperadorTransacao"
                 />
