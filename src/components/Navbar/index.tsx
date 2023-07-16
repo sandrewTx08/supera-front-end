@@ -47,6 +47,28 @@ export default function Component() {
                 Repositorio dos quato desafios
               </NavDropdown.Item>
             </NavDropdown>
+            <form
+              className="d-flex"
+              onSubmit={(event) => {
+                event.preventDefault();
+                navigate(
+                  `transferencia/${
+                    event.target.searchBarContaId.value as unknown as string
+                  }`
+                );
+              }}
+            >
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Buscar conta"
+                aria-label="Buscar conta"
+                name="searchBarContaId"
+              />
+              <button className="btn btn-outline-light" type="submit">
+                Buscar
+              </button>
+            </form>
           </Nav>
         </Navbar.Collapse>
       </Container>
