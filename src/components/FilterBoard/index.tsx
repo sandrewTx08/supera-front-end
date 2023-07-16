@@ -23,10 +23,10 @@ export default function Component() {
   );
 
   const [dataInicio, dataInicioSet] = useState<Date | null>(
-    new Date(urlParams.get("dataInicio") as string)
+    new Date(urlParams.get("dataInicio") || 0)
   );
   const [dataFim, dataFimSet] = useState<Date | null>(
-    new Date(urlParams.get("dataFim") as string)
+    new Date(urlParams.get("dataFim") || Date.now())
   );
 
   useEffect(() => {
