@@ -9,7 +9,7 @@ export default function Component() {
   return (
     <div className="container d-flex justify-content-center flex-column p-5 gap-5">
       <div className="display-4">
-        Pequise as transações dos usario pelo identificador unico da conta
+        Pesquise as transações do usuario pelo identificador unico da conta
       </div>
 
       <InputGroup className="mb-3">
