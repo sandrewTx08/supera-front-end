@@ -54,84 +54,82 @@ export default function Component() {
     </div>
   ) : (
     data && (
-      <div className="container">
-        <form className="d-flex flex-column gap-4">
-          <div className="row d-flex gap-4 h5">
-            <div className="col align-items-center d-flex gap-2 justify-content-between">
-              <div className="d-flex gap-2 align-items-center">
-                <i className="bi bi-calendar3"></i>
-                Pediodo inicio:
-              </div>
-
-              <DatePicker
-                selected={dataInicio}
-                name="dataInicio"
-                className="input-group-text"
-                onChange={(date) => dataInicioSet(date as Date)}
-              />
+      <form className="d-flex flex-column gap-4 container">
+        <div className="row d-flex gap-4 h5">
+          <div className="col align-items-center d-flex gap-2 justify-content-between">
+            <div className="d-flex gap-2 align-items-center">
+              <i className="bi bi-calendar3"></i>
+              Pediodo inicio:
             </div>
 
-            <div className="col align-items-center d-flex gap-2 justify-content-between">
-              <div className="d-flex gap-2 align-items-center">
-                <i className="bi bi-calendar3"></i>
-                Pediodo fim:
-              </div>
-
-              <DatePicker
-                className="input-group-text"
-                name="dataFim"
-                selected={dataFim}
-                onChange={(date) => dataFimSet(date as Date)}
-              />
-            </div>
-
-            <div className="col align-items-center d-flex gap-2 justify-content-between">
-              <div className="d-flex gap-2 align-items-center">
-                <i className="bi bi-person-fill"></i>
-                Nome do operador:
-              </div>
-
-              <input
-                type="text"
-                value={nomeOperadorTransacao}
-                onChange={({ target: { value } }) => nomeOperadorSet(value)}
-                className="input-group-text"
-                name="nomeOperadorTransacao"
-              />
-            </div>
-          </div>
-
-          <div className="d-flex justify-content-end">
-            <button type="submit" className="btn d-inline btn-primary">
-              Buscar
-            </button>
-          </div>
-
-          <div className="row d-flex gap-3 h5">
-            <div className="col">
-              Saldo total: <b>R${data.saldoTotal}</b>
-            </div>
-
-            {data.saldoTotalDoPeriodo && (
-              <div className="col">
-                Saldo do periodo: <b>R${data.saldoTotalDoPeriodo}</b>
-              </div>
-            )}
-          </div>
-
-          <div className="table-responsive">
-            <Tabelas data={data.transferencias} />
-          </div>
-
-          <div className="d-flex justify-content-center">
-            <Pagination
-              active={page}
-              totalPages={data.totalDePaginas}
-              onClick={(index) => pageSet(index)}
+            <DatePicker
+              selected={dataInicio}
+              name="dataInicio"
+              className="input-group-text"
+              onChange={(date) => dataInicioSet(date as Date)}
             />
           </div>
-        </form>
-      </div>
+
+          <div className="col align-items-center d-flex gap-2 justify-content-between">
+            <div className="d-flex gap-2 align-items-center">
+              <i className="bi bi-calendar3"></i>
+              Pediodo fim:
+            </div>
+
+            <DatePicker
+              className="input-group-text"
+              name="dataFim"
+              selected={dataFim}
+              onChange={(date) => dataFimSet(date as Date)}
+            />
+          </div>
+
+          <div className="col align-items-center d-flex gap-2 justify-content-between">
+            <div className="d-flex gap-2 align-items-center">
+              <i className="bi bi-person-fill"></i>
+              Nome do operador:
+            </div>
+
+            <input
+              type="text"
+              value={nomeOperadorTransacao}
+              onChange={({ target: { value } }) => nomeOperadorSet(value)}
+              className="input-group-text"
+              name="nomeOperadorTransacao"
+            />
+          </div>
+        </div>
+
+        <div className="d-flex justify-content-end">
+          <button type="submit" className="btn d-inline btn-primary">
+            Buscar
+          </button>
+        </div>
+
+        <div className="row d-flex gap-3 h5">
+          <div className="col">
+            Saldo total: <b>R${data.saldoTotal}</b>
+          </div>
+
+          {data.saldoTotalDoPeriodo && (
+            <div className="col">
+              Saldo do periodo: <b>R${data.saldoTotalDoPeriodo}</b>
+            </div>
+          )}
+        </div>
+
+        <div className="table-responsive">
+          <Tabelas data={data.transferencias} />
+        </div>
+
+        <div className="d-flex justify-content-center">
+          <Pagination
+            active={page}
+            totalPages={data.totalDePaginas}
+            onClick={(index) => pageSet(index)}
+          />
+        </div>
+      </form>
     )
   );
 }
