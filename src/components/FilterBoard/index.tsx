@@ -8,12 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import Pagination from "./Pagination";
 
-function formatDate(date: string | null) {
-  if (date) {
-    return new Date(date).toISOString().slice(0, 19).replace(" ", "T");
-  }
-}
-
 export default function Component() {
   const urlParams = new URLSearchParams(window.location.search);
   const { id } = useParams<"id">();
@@ -43,8 +37,8 @@ export default function Component() {
         page: page - 1,
         size: 1,
         nomeOperadorTransacao,
-        dataInicio: formatDate(urlParams.get("dataInicio")),
-        dataFim: formatDate(urlParams.get("dataFim")),
+        dataInicio: dataInicio?.toISOString(),
+        dataFim: dataFim?.toISOString(),
       },
     })
       .then(({ data }) => dataSet(data))
