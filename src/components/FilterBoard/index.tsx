@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinnerBorder from "../Loading/LoadingSpinnerBorder";
 import { Data } from "../../fetch";
 import Tabelas from "./Tabelas";
@@ -11,6 +11,7 @@ import Pagination from "./Pagination";
 export default function Component() {
   const urlParams = new URLSearchParams(window.location.search);
   const { id } = useParams<"id">();
+  const navigate = useNavigate();
 
   const [data, dataSet] = useState<Data>();
   const [loading, loadingSet] = useState<boolean>(false);
@@ -44,7 +45,7 @@ export default function Component() {
       .then(({ data }) => dataSet(data))
       .catch((error) => errorSet(error as Error))
       .finally(() => loadingSet(false));
-  }, [id, page]);
+  }, [id, page, urlParams.toString()]);
 
   return loading ? (
     <LoadingSpinnerBorder />
@@ -54,7 +55,19 @@ export default function Component() {
     </div>
   ) : (
     data && (
-      <form className="d-flex flex-column gap-4 container">
+      <form
+        className="d-flex flex-column gap-4 container"
+        onSubmit={(event) => {
+          event.preventDefault();
+
+          pageSet(0);
+          urlParams.set("nomeOperadorTransacao", nomeOperadorTransacao || "");
+          urlParams.set("dataInicio", dataInicio?.toISOString() || "");
+          urlParams.set("dataFim", dataFim?.toISOString() || "");
+
+          navigate(`/transferencia/${id as string}?${urlParams.toString()}`);
+        }}
+      >
         <div className="row d-flex gap-4 h5">
           <div className="col align-items-center d-flex gap-2 justify-content-between">
             <div className="d-flex gap-2 align-items-center">
