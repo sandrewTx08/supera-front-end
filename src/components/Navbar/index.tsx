@@ -1,6 +1,9 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function Component() {
+  const navigate = useNavigate();
+
   return (
     <Navbar
       expand="md"
@@ -9,7 +12,7 @@ export default function Component() {
       className="bg-body-tertiary"
     >
       <Container className="gap-4">
-        <Nav.Link href="/">
+        <Nav.Link onClick={() => navigate("/")}>
           <Navbar.Brand>
             <img
               width="200"
@@ -22,7 +25,7 @@ export default function Component() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto gap-3">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
             <NavDropdown title="Repositorio" id="basic-nav-dropdown">
               <NavDropdown.Item
                 target="_blank"
